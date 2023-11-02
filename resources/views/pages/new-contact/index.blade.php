@@ -8,7 +8,7 @@
             <li class="breadcrumb-item active">New Contact</li>
         </ol>
     </nav>
-    <form action="#" method="POST">
+    <form action="{{ route('users.contact.store') }}" method="POST">
         @csrf
         @include('pages.new-contact.form')
     </form>

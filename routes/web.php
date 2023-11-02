@@ -28,12 +28,13 @@ Route::name('users.')->prefix('users')->group(function () {
         Route::controller(ListController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::name('contact.')->prefix('contact')->controller(ContactController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::post('/', 'store')->name('store');
+                Route::get('/new', 'index')->name('index');
+                Route::get('/view/{contact}', 'view')->name('view');
+                Route::post('/new', 'store')->name('store');
                 Route::get('/create', 'create')->name('create');
-                Route::get('/edit/{post}', 'edit')->name('edit');
-                Route::put('/update/{post}', 'update')->name('update');
-                Route::delete('/delete/{post}', 'destroy')->name('destroy');
+                Route::get('/edit/{contact}', 'edit')->name('edit');
+                Route::put('/update/{contact}', 'update')->name('update');
+                Route::delete('/delete/{contact}', 'destroy')->name('destroy');
             });
         });
     });

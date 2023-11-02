@@ -15,12 +15,15 @@ class ContactController extends Controller
         return view('pages.new-contact.index', compact('contact'));
     }
 
+    public function view(Contact $contact): View {
+        return view('pages.new-contact.view', compact('contact'));
+    }
+
     public function store(Request $request, Contact $contact) {
         $request->validate([
             'name'    => 'required',
             'contact' => 'required',
-            'email'   => 'required',
-            'owner'   => 'required'
+            'email'   => 'required'
         ]);
 
         $request['owner'] = Auth::user()->name;
@@ -34,7 +37,7 @@ class ContactController extends Controller
     }
 
     public function edit(Contact $contact) {
-        return view('admin.post.edit', compact('contact'));
+        return view('pages.new-contact.edit', compact('contact'));
     }
     
     public function destroy(Contact $contact) {

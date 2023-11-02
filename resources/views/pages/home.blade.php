@@ -11,25 +11,21 @@
     <table class="table mt-3">
         <thead>
             <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Timestamp</th>
+                <th scope="col">Name</th>
             </tr>
         </thead>
         @foreach ($pages as $post)
 
         <tbody>
             <tr>
-                <td>{{ $post->name }}</td>
-                <td>{{ $post->contact }}</td>
-                <td>{{ $post->email }}</td>
+                <td><a href="{{ route('users.contact.view', $post->id) }}">{{ $post->name }}</td>
                 @if(isset(Auth::user()->name) && Auth::user()->name == $post->owner)
                     <td>
                         <a class="btn btn-outline-primary btn-sm" href="{{ route('users.contact.edit', $post->getKey()) }}"><i class="nf nf-md-pen"></i></a>
-                        <a class="btn btn-outline-danger btn-sm" onclick="if (confirm('Tem certeza que deseja deletar esse post?')) document.getElementById('delete-post-{{ $post->getKey() }}').submit();">
+                        <a class="btn btn-outline-danger btn-sm" onclick="if (confirm('Tem certeza que deseja deletar esse contato?')) document.getElementById('delete-contact-{{ $post->getKey() }}').submit();">
                             <i class="nf nf-fa-trash"></i>
                         </a>
-                        <form id="delete-post-{{ $post->getKey() }}" action="{{ route('users.contact.destroy', $post->getKey()) }}" method="POST">
+                        <form id="delete-contact-{{ $post->getKey() }}" action="{{ route('users.contact.destroy', $post->getKey()) }}" method="POST">
                             @csrf
                             @method('DELETE')
                         </form>

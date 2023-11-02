@@ -4,9 +4,9 @@ Todo:
 
 - [x] Página de Login/Cadastro
 - [x] Home page simples
-- [x] Adicionar ontato
+- [x] Adicionar contato
 - [x] Remover contato
-- [ ] Editar contato
-- [ ] Ver detalhes do contato
+- [x] Editar contato
+- [x] Ver detalhes do contato
 - [ ] Testes unitários
-- [ ] Somente dono do contato edita-lo
+- [ ] Somente dono do contato poder edita-lo
