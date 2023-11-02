@@ -29,7 +29,7 @@ Route::name('users.')->prefix('users')->group(function () {
             Route::get('/query', 'search')->name('search');
         });
         
-        Route::name('post.')->prefix('post')->controller(PostController::class)->group(function () {
+        Route::name('contact.')->prefix('post')->controller(ContactController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
             Route::get('/create', 'create')->name('create');

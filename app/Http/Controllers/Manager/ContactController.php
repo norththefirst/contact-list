@@ -24,4 +24,23 @@ class ContactController extends Controller
     public function view(Contact $view): View {
         return view('pages.view', compact('view'));
     }
+
+    public function store(Request $request, Contact $contact) {
+        $contact->create($request->all());
+        return redirect()->route('users.panel.index')->with('success_message', 'Novo post criado!');
+    }
+
+    public function update(Request $request, Contact $contact) {
+        $contact->update($request->all());
+        return redirect()->route('users.panel.index')->with('success_message', 'Post editado com sucesso!');
+    }
+
+    public function edit(Contact $contact) {
+        return view('admin.post.edit', compact('contact'));
+    }
+    
+    public function destroy(Contact $contact) {
+        $contact->delete();
+        return redirect()->route('admin.panel.index')->with('success_message', 'Post deletado com sucesso!');
+    }
 }
