@@ -10,6 +10,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 shadow">
         <div class="container-fluid">
+           
             <a href="{{ route('main.index') }}" class="navbar-brand">{{ config('app.name') }}</a>
             @if(isset(Auth::user()->name))
             <ul class="navbar-nav me-auto">
@@ -17,6 +18,9 @@
                 @csrf
                 <button class="btn btn-outline-light" type="submit"><i class="nf nf-md-logout"></i></button>
                 </form>
+                <a href="{{ route('users.contact.index') }}">
+                    <button class="btn btn-outline-success ms-2" type="submit"><i class="nf nf-oct-file_added"></i></button>
+                </a>
             </ul>
             @endif
             @if(!isset(Auth::user()->name))
@@ -24,12 +28,9 @@
                 <a class="btn btn-outline-light" href="{{ route('users.login.index') }}"><i class="nf nf-md-login"></i></a>
             </ul>
             @endif
-            <form class="d-flex" role="search" method="GET" action="{{ route('main.search') }}">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit"><i class="nf nf-md-magnify"></i></button>
-            </form>
         </div>
-    </nav>      
+    </nav>
+    
     @yield('content')
 </body>
 </html>

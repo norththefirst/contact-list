@@ -19,7 +19,8 @@ class Contact extends Model
     public $fillable = [
         'name',
         'contact',
-        'email'
+        'email',
+        'owner'
     ];
 
     /**

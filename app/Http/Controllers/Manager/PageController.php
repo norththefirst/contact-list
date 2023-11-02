@@ -6,24 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ContactController extends Controller
+class PageController extends Controller
 {
+    public function index(): View {
+        $pages = Contact::orderBy('created_at', 'DESC')->paginate(10);
+        return view('pages.home', compact('pages'));
+    }
 
-    public function index(Contact $contact): View {
-        return view('pages.new-contact.index', compact('contact'));
+    public function view(Contact $view): View {
+        return view('pages.view', compact('view'));
     }
 
     public function store(Request $request, Contact $contact) {
-        $request->validate([
-            'name'    => 'required',
-            'contact' => 'required',
-            'email'   => 'required',
-            'owner'   => 'required'
-        ]);
-
-        $request['owner'] = Auth::user()->name;
         $contact->create($request->all());
         return redirect()->route('users.index')->with('success_message', 'Novo contato criado!');
     }
@@ -39,6 +34,6 @@ class ContactController extends Controller
     
     public function destroy(Contact $contact) {
         $contact->delete();
-        return redirect()->route('users.index')->with('success_message', 'Contato deletado com sucesso!');
+        return redirect()->route('admin.index')->with('success_message', 'Contato deletado com sucesso!');
     }
 }

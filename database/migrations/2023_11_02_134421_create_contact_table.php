@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('contact');
             $table->string('email')->unique();
+            $table->string('owner');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,9 +28,10 @@ return new class extends Migration
          * 
          * Schema::create('contact', function (Blueprint $table) {
          *      $table->id();
-         *      $table->string('name');
-         *      $table->string('contact');
-         *      $table->string('email')->unique();
+         *      $table->longtext('name');
+         *      $table->longtext('contact');
+         *      $table->longtext('email')->unique();
+         *      $table->longtext('owner');
          *      $table->timestamps();
          *      $table->softDeletes();
          * });

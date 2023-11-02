@@ -19,6 +19,6 @@ class UserController extends Controller
             'password' => 'required'
         ]);
         $users->create($request->all());
-        return redirect()->route('main.index')->with('success_message', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('users.login.index')->with('success_message', 'Usuário cadastrado com sucesso!');
     }
 }

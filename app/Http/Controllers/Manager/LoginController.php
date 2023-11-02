@@ -21,7 +21,7 @@ class LoginController extends Controller
         ];
         if(Auth::attempt($options)) {
             $request->session()->regenerate();
-            return redirect()->route('main.index')->with('success_message', 'Login bem-sucedido!');
+            return redirect()->route('users.index')->with('success_message', 'Login bem-sucedido!');
         } else {
             return redirect()->route('users.login.index')->with('error_message', 'Falha ao autenticar!');
         }

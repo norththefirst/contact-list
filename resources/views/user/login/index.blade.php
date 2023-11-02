@@ -3,6 +3,12 @@
 @section('content')
 <div class="container form-login-container p-4 mt-5 shadow">
     <h2 class="d-flex justify-content-center">Entrar</h2>
+    @if(session()->has('success_message'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        {{ session('success_message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     @if(session()->has('error_message'))
     <div class="alert alert-danger" role="alert">
         {{ session('error_message') }}

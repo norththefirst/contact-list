@@ -1,17 +1,17 @@
-@extends('template.admin')
+@extends('template.default')
 
-@section('admin-breadcrumb')
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-nav">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">New Contact</li>
-    </ol>
-</nav>
-@endsection
-
-@section('admin-content')
+@section('content')
+<div class="container shadow p-3">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-nav">
+            <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Home</a></li>
+            <li class="breadcrumb-item active">New Contact</li>
+        </ol>
+    </nav>
     <form action="#" method="POST">
         @csrf
-        @include('admin.post.form')
+        @include('pages.new-contact.form')
     </form>
+</div>
+
 @endsection

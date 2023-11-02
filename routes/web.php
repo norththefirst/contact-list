@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Manager\ContactController;
+use App\Http\Controllers\Manager\ListController;
 use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\Manager\PageController;
 use App\Http\Controllers\Manager\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,26 +18,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('main.')->controller(ContactController::class)->group(function () {
+Route::name('main.')->controller(PageController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/query', 'search')->name('search');
     Route::get('/view/{view}', 'view')->name('view');
 });
 
 Route::name('users.')->prefix('users')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::name('panel.')->controller(AdminController::class)->group(function () {
+        Route::controller(ListController::class)->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/query', 'search')->name('search');
-        });
-        
-        Route::name('contact.')->prefix('post')->controller(ContactController::class)->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/', 'store')->name('store');
-            Route::get('/create', 'create')->name('create');
-            Route::get('/edit/{post}', 'edit')->name('edit');
-            Route::put('/update/{post}', 'update')->name('update');
-            Route::delete('/delete/{post}', 'destroy')->name('destroy');
+            Route::name('contact.')->prefix('contact')->controller(ContactController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::post('/', 'store')->name('store');
+                Route::get('/create', 'create')->name('create');
+                Route::get('/edit/{post}', 'edit')->name('edit');
+                Route::put('/update/{post}', 'update')->name('update');
+                Route::delete('/delete/{post}', 'destroy')->name('destroy');
+            });
         });
     });
 
